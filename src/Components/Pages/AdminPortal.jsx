@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 import {
     MagnifyingGlassIcon,
     ChevronUpDownIcon,
@@ -5,39 +7,29 @@ import {
 import { PencilIcon, UserPlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { Button, Card, CardBody, CardFooter, CardHeader, IconButton, Input, Tooltip, Typography } from '@material-tailwind/react';
 import ModalForm from "./ModalForm";
+import UpdatePageModal from "./UpdatePageModal";
 
 const TABLE_HEAD = ["Timestamp", "Name", "Shapecolor", "Edit/Delete",];
 
-const TABLE_ROWS = [
-    {
-        timestamp: "",
-        name: "John Michael",
-        shapecolor: "",
-
-    },
-    {
-        timestamp: "",
-        name: "John Michael",
-        shapecolor: "",
-    },
-    {
-        timestamp: "",
-        name: "John Michael",
-        shapecolor: "",
-    },
-    {
-        timestamp: "",
-        name: "John Michael",
-        shapecolor: "",
-    },
-    {
-        timestamp: "",
-        name: "John Michael",
-        shapecolor: "",
-    },
-];
 
 const AdminPortal = () => {
+    const URL = 'http://localhost:3000/api/v1/members/'
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await fetch(URL)
+            result.json().then(json => {
+                setData(json);
+            })
+        }
+        fetchData();
+    }, []);
+
+    const handleDelete = id => {
+        fetch(`${URL} ${id}`, { method: 'DELETE' })
+        console.log(id)
+    }
     return (
         <div>
             <Card className="h-full w-full">
@@ -86,9 +78,9 @@ const AdminPortal = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {TABLE_ROWS.map(
-                                ({ timestamp, name, shapecolor }, index) => {
-                                    const isLast = index === TABLE_ROWS.length - 1;
+                            {data.map(
+                                ({ id, timestamp, name, shapecolor }, index) => {
+                                    const isLast = index === data.length - 1;
                                     const classes = isLast
                                         ? "p-4"
                                         : "p-4 border-b border-blue-gray-50";
@@ -131,13 +123,29 @@ const AdminPortal = () => {
                                                 </div>
                                             </td>
                                             <td className={classes}>
-                                                <Tooltip content="Edit User">
+                                                <IconButton variant="text" onClick={() => {
+                                                    console.log("ID: ",id)
+                                                    document.getElementById('my_modal_3').showModal()
+                                                }}>
+                                                    <PencilIcon className="h-4 w-4" />
+                                                </IconButton>
+                                                <dialog id="my_modal_3" className="modal">
+                                                    <div className="modal-box">
+                                                        <UpdatePageModal id={id}></UpdatePageModal>
+                                                    </div>
+                                                    <form method="dialog" className="modal-backdrop">
+                                                        <button>close</button>
+                                                    </form>
+                                                </dialog>
+
+                                                {/* <Tooltip content="Edit User">
                                                     <IconButton variant="text">
                                                         <PencilIcon className="h-4 w-4" />
+                                                        
                                                     </IconButton>
-                                                </Tooltip>
+                                                </Tooltip> */}
                                                 <Tooltip content="Delete User">
-                                                    <IconButton variant="text">
+                                                    <IconButton onClick={e => handleDelete(id)} variant="text">
                                                         <TrashIcon className="h-4 w-4" />
                                                     </IconButton>
                                                 </Tooltip>

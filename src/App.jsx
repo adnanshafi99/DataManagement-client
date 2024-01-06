@@ -7,6 +7,8 @@ import Login from './Components/Pages/login'
 import UserPortal from './Components/Pages/UserPortal'
 import AdminPortal from './Components/Pages/AdminPortal'
 import ModalForm from './Components/Pages/ModalForm'
+import UpdatePageModal from './Components/Pages/UpdatePageModal'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -19,6 +21,8 @@ function App() {
     {/* <UserPortal></UserPortal> */}
     <AdminPortal></AdminPortal>
     {/* <ModalForm></ModalForm> */}
+    {/* <UpdatePageModal></UpdatePageModal> */}
+    
     </div>
     
   )
