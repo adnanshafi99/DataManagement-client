@@ -30,9 +30,18 @@ const handleSubmit = (e) => {
     e.preventDefault();
     
     const currentDate = new Date();
-    const formattedTimestamp = currentDate.toISOString();
+    // Format time
+  const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const formattedTime = currentDate.toLocaleString('en-US', timeOptions);
 
-    setTimestamp(formattedTimestamp);
+  // Format date
+  const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  const formattedDate = currentDate.toLocaleString('en-US', dateOptions);
+
+  // Combine time and date
+  const formattedTimestamp = `${formattedTime} ${formattedDate}`;
+
+  setTimestamp(formattedTimestamp);
 
     const member = { timestamp: formattedTimestamp, name, shape, color };
 

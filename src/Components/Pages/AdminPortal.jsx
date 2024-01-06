@@ -79,7 +79,7 @@ const AdminPortal = () => {
                         </thead>
                         <tbody>
                             {data.map(
-                                ({ id, timestamp, name, shapecolor }, index) => {
+                                ({ id, timestamp, name, shape , color }, index) => {
                                     const isLast = index === data.length - 1;
                                     const classes = isLast
                                         ? "p-4"
@@ -118,20 +118,20 @@ const AdminPortal = () => {
                                                         color="blue-gray"
                                                         className="font-normal"
                                                     >
-                                                        {shapecolor}
+                                                        {shape + color}
                                                     </Typography>
                                                 </div>
                                             </td>
                                             <td className={classes}>
                                                 <IconButton variant="text" onClick={() => {
-                                                    console.log("ID: ",id)
+                                                    console.log("ID: ")
                                                     document.getElementById('my_modal_3').showModal()
                                                 }}>
                                                     <PencilIcon className="h-4 w-4" />
                                                 </IconButton>
                                                 <dialog id="my_modal_3" className="modal">
                                                     <div className="modal-box">
-                                                        <UpdatePageModal id={id}></UpdatePageModal>
+                                                        <UpdatePageModal key={id} id={id}></UpdatePageModal>
                                                     </div>
                                                     <form method="dialog" className="modal-backdrop">
                                                         <button>close</button>

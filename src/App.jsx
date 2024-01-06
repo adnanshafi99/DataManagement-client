@@ -8,6 +8,7 @@ import UserPortal from './Components/Pages/UserPortal'
 import AdminPortal from './Components/Pages/AdminPortal'
 import ModalForm from './Components/Pages/ModalForm'
 import UpdatePageModal from './Components/Pages/UpdatePageModal'
+import TestShape from './Components/Pages/TestShape'
 
 
 function App() {
@@ -19,9 +20,10 @@ function App() {
     {/* <Login></Login> */}
     {/* <Register></Register> */}
     {/* <UserPortal></UserPortal> */}
-    <AdminPortal></AdminPortal>
+    {/* <AdminPortal></AdminPortal> */}
     {/* <ModalForm></ModalForm> */}
     {/* <UpdatePageModal></UpdatePageModal> */}
+    <TestShape></TestShape>
     
     </div>
     

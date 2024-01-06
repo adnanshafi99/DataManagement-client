@@ -1,0 +1,28 @@
+.square {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+  
+  .circle {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: green;
+    border-radius: 50%;
+  }
+  
+.triangle {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    /* background-color: rgb(0, 0, 0); */
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    border-bottom: 50px solid green;
+}
+
+  .text {
+    margin: auto;
+  }
