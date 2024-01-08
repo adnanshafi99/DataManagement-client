@@ -10,6 +10,15 @@ Start the Development Server:
 
 npm run dev
 
+# Login Details
+
+Admin login details - Email:  admin@gmail.com 
+
+password: admin123
+
+User login details - Email: user@gmail.com
+
+password: user123
 
 # Tech Stack
 
