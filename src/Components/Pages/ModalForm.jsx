@@ -34,6 +34,26 @@ const ModalForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Valid shapes and colors
+        const validShapes = ['square', 'triangle', 'circle'];
+        const validColors = ['red', 'blue', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'gray', 'black', 'white'];
+
+        // Convert shape and color to lowercase for case-insensitive validation
+        const lowercaseShape = shape.toLowerCase();
+        const lowercaseColor = color.toLowerCase();
+
+        // Check if the provided shape is valid
+        if (!validShapes.includes(lowercaseShape)) {
+            alert('Invalid shape. Only square, triangle, and circle are accepted. Lowercase only');
+            return;
+        }
+
+        // Check if the provided color is valid
+        if (!validColors.includes(lowercaseColor)) {
+            alert('Invalid color. Only red, blue, green, yellow, orange, purple, pink, brown, gray, black, and white are accepted.Lowercase only');
+            return;
+        }
+
         // Get the current date and format it
         const currentDate = new Date();
         const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -46,7 +66,7 @@ const ModalForm = () => {
         setTimestamp(formattedTimestamp);
 
         // Create a member object with the form data
-        const member = { timestamp: formattedTimestamp, name, shape, color };
+        const member = { timestamp: formattedTimestamp, name, shape: lowercaseShape, color: lowercaseColor };
 
         // Send a POST request to add the new member
         fetch(URL, {

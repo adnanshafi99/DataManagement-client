@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Importing necessary components and hooks from external libraries
 import { Button, Card, CardBody, CardFooter, CardHeader, Input, Typography } from '@material-tailwind/react';
 import React, { useState } from 'react';
