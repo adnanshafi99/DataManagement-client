@@ -1,3 +1,46 @@
+# Live Link : https://datamanagement-2dd36.web.app/admin-portal
+
+# Instruction
+
+Install Dependencies:
+
+npm install
+
+Start the Development Server:
+
+npm run dev
+
+# Login Details
+
+Admin login details - Email:  admin@gmail.com 
+
+password: admin123
+
+User login details - Email: user@gmail.com
+
+password: user123
+
+# Tech Stack
+
+Frontend: 
+
+ReactJS with Vite
+
+Firebase Hosting
+
+Backend:
+
+Node.js
+
+Express.js
+
+PostgreSQL database hosted on Neon
+
+Vercel for serverless functions hosting
+
+
+Authentication: Firebase Authentication
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
