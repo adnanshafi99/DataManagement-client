@@ -1,8 +1,9 @@
 // Importing necessary components from the @material-tailwind/react library
 import { Button, Card, Typography } from '@material-tailwind/react';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './TestShape.css';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './Context/AuthProvider';
 
 // Define the table header with the columns to display
 const TABLE_HEAD = ["Timestamp", "Name", "Shapecolor"];
@@ -11,6 +12,7 @@ const UserPortal = () => {
   const URL = 'https://backend-eta-silk.vercel.app/api/v1/members/';
   const [data, setData] = useState([]);
   const Navigate = useNavigate();
+  const { user, logOut } = useContext(AuthContext);
 
   // Fetch data on component mount
   useEffect(() => {
@@ -23,10 +25,15 @@ const UserPortal = () => {
     fetchData();
   }, []);
 
+  const handleLogOut = () =>
+  logOut()
+    .then(() => console.log("User logged out"))
+    .catch(error => console.log(error))
+
   return (
     <div className="flex flex-col">
       {/* Logout Button */}
-      <Button className="btn self-end mt-4 mr-4" onClick={() => Navigate(`/`)}>Log Out</Button>
+      <Button className="btn self-end mt-4 mr-4" onClick={handleLogOut}>Log Out</Button>
 
       {/* Card component to contain the grid layout */}
       <Card className="h-full w-full">

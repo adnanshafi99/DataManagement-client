@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import './TestShape.css';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
     MagnifyingGlassIcon,
     ChevronUpDownIcon,
@@ -10,12 +10,14 @@ import { Button, Card, CardBody, CardFooter, CardHeader, IconButton, Input, Tool
 import ModalForm from "./ModalForm";
 import UpdatePageModal from "./UpdatePageModal";
 import { Navigate, useNavigate } from 'react-router-dom';
+import { AuthContext } from './Context/AuthProvider';
 
 const TABLE_HEAD = ["Timestamp", "Name", "Shapecolor", "Edit/Delete",];
 
 
 const AdminPortal = () => {
     const [selectID, setSelectID] = useState("");
+    const { user, logOut } = useContext(AuthContext);
     // Constant and State
     const URL = 'https://backend-eta-silk.vercel.app/api/v1/members/'
     const [data, setData] = useState([]);
@@ -39,6 +41,12 @@ const AdminPortal = () => {
             .then(() => { setChangeCounter(changeCounter + 1) })
         console.log(id)
     }
+
+    const handleLogOut = () =>
+    logOut()
+      .then(() => console.log("User logged out"))
+      .catch(error => console.log(error))
+
     return (
         <div>
             <Card className="h-full w-full">
@@ -53,7 +61,7 @@ const AdminPortal = () => {
                         <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
                             {/* Open the modal using document.getElementById('ID').showModal() method */}
                             <Button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}><UserPlusIcon strokeWidth={2} className="h-4 w-4" />Add Member</Button>
-                            <Button className="btn" onClick={() => navigate(`/`)}>Log Out</Button>
+                            <Button className="btn" onClick={handleLogOut}>Log Out</Button>
                             <dialog id="my_modal_2" className="modal">
                                 <div className="modal-box">
                                     <ModalForm></ModalForm>
@@ -240,7 +248,7 @@ const AdminPortal = () => {
                     </table>
                 </CardBody>
                 {/* Card Footer */}
-                <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
+                {/* <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
                     <Typography variant="small" color="blue-gray" className="font-normal">
                         Page 1 of 10
                     </Typography>
@@ -252,7 +260,7 @@ const AdminPortal = () => {
                             Next
                         </Button>
                     </div>
-                </CardFooter>
+                </CardFooter> */}
             </Card>
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box">
