@@ -15,6 +15,7 @@ const TABLE_HEAD = ["Timestamp", "Name", "Shapecolor", "Edit/Delete",];
 
 
 const AdminPortal = () => {
+    const [selectID, setSelectID] = useState("");
     // Constant and State
     const URL = 'https://backend-eta-silk.vercel.app/api/v1/members/'
     const [data, setData] = useState([]);
@@ -210,19 +211,13 @@ const AdminPortal = () => {
                                             {/* Edit/Delete Column */}
                                             <td className={classes}>
                                                 <IconButton variant="text" onClick={() => {
+                                                    setSelectID(id)
                                                     console.log("ID: ")
                                                     document.getElementById('my_modal_3').showModal()
                                                 }}>
                                                     <PencilIcon className="h-4 w-4" />
                                                 </IconButton>
-                                                <dialog id="my_modal_3" className="modal">
-                                                    <div className="modal-box">
-                                                        <UpdatePageModal key={id} id={id}></UpdatePageModal>
-                                                    </div>
-                                                    <form method="dialog" className="modal-backdrop">
-                                                        <button>close</button>
-                                                    </form>
-                                                </dialog>
+
 
                                                 {/* <Tooltip content="Edit User">
                                                     <IconButton variant="text">
@@ -259,6 +254,14 @@ const AdminPortal = () => {
                     </div>
                 </CardFooter>
             </Card>
+            <dialog id="my_modal_3" className="modal">
+                <div className="modal-box">
+                    <UpdatePageModal id={selectID}></UpdatePageModal>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
         </div>
     );
 };
